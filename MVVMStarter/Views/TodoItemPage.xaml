@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MVVMStarter.Core.ViewModels;assembly=MVVMStarter.Core"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    x:TypeArguments="viewModels:TodoItemViewModel"
+    x:Class="MVVMStarter.Views.TodoItemPage"
+    Title="{Binding Item.Title}">
+    <StackLayout
+        Margin="20"
+        VerticalOptions="StartAndExpand">
+        <Label Text="Name" />
+        <Entry Text="{Binding Item.Title}" />
+        <Label Text="Notes" />
+        <Entry Text="{Binding Item.Notes}" />
+        <Label Text="Done" />
+        <Switch IsToggled="{Binding Item.Done}" />
+        <Button
+            Text="Save"
+            Command="{mvx:MvxBind SaveItemCommand}"/>
+        <Button
+            Text="Delete"
+            Command="{mvx:MvxBind DeleteItemCommand}"/>
+        <Button
+            Text="Cancel"
+            Command="{mvx:MvxBind CancelItemCommand}"/>
+    </StackLayout>
+</views:MvxContentPage>

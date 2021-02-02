@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:viewModels="clr-namespace:MVVMStarter.Core.ViewModels;assembly=MVVMStarter.Core"
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Bindings;assembly=MvvmCross.Forms"
+    x:TypeArguments="viewModels:TodoItemsViewModel"
+    x:Class="MVVMStarter.Views.TodoItemsPage"
+    Title="TodoItems">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" Command="{mvx:MvxBind NewItemCommand}">
+            <ToolbarItem.IconImageSource>
+                <OnPlatform x:TypeArguments="ImageSource">
+                    <On Platform="Android, UWP" Value="plus.png" />
+                </OnPlatform>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <views:MvxListView
+        Margin="20"
+        SelectionMode="None"
+        ItemsSource="{mvx:MvxBind Items}" 
+        ItemClick="{mvx:MvxBind ItemSelectedCommand}"
+        IsPullToRefreshEnabled="True" 
+        RefreshCommand="{mvx:MvxBind RefreshItemsCommand}"
+        HasUnevenRows="True"
+        SeparatorVisibility="Default">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Spacing="0" Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding Title}" HorizontalOptions="StartAndExpand" />
+                            <Label FontSize="Small" Text="{Binding Description}" HorizontalOptions="StartAndExpand" />
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </views:MvxListView>
+</views:MvxContentPage>
