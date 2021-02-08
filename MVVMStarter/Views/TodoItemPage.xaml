@@ -9,6 +9,7 @@
     x:Class="MVVMStarter.Views.TodoItemPage"
     Title="{Binding Item.Title}">
     <StackLayout
+        AutomationId="TodoItemLayout"
         Margin="20"
         VerticalOptions="StartAndExpand">
         <Label Text="Name" />

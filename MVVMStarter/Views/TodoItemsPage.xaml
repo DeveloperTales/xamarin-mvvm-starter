@@ -18,22 +18,48 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <views:MvxListView
+        AutomationId="TodoItemsListView"
         Margin="20"
         SelectionMode="None"
         ItemsSource="{mvx:MvxBind Items}" 
         ItemClick="{mvx:MvxBind ItemSelectedCommand}"
-        IsPullToRefreshEnabled="True" 
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsBusy}"
         RefreshCommand="{mvx:MvxBind RefreshItemsCommand}"
         HasUnevenRows="True"
         SeparatorVisibility="Default">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout Margin="10,10" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <StackLayout Spacing="0" Orientation="Vertical" VerticalOptions="CenterAndExpand">
-                            <Label Text="{Binding Title}" HorizontalOptions="StartAndExpand" />
-                            <Label FontSize="Small" Text="{Binding Description}" HorizontalOptions="StartAndExpand" />
+                    <StackLayout
+                        AutomationId="TodoItemListViewLayout"
+                        Margin="10,10"
+                        Orientation="Horizontal"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout
+                            Spacing="0"
+                            Orientation="Vertical"
+                            VerticalOptions="CenterAndExpand">
+                            <Label
+                                AutomationId="TodoItemsListTitle"
+                                Text="{Binding Title}"
+                                Style="{StaticResource MediumLabelStyle}"
+                                HorizontalOptions="StartAndExpand" />
+                            <Label
+                                AutomationId="TodoItemsListNotes"
+                                FontSize="Small"
+                                Style="{StaticResource SmallLabelStyle}"
+                                Text="{Binding Notes}"
+                                HorizontalOptions="StartAndExpand" />
                         </StackLayout>
+                        <Label
+                            FontSize="Small"
+                            Text="Done"
+                            Style="{StaticResource LabelPrimaryColorStyle}"
+                            IsVisible="{Binding Done}"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="End"
+                            VerticalTextAlignment="Center"/>
                     </StackLayout>
                 </ViewCell>
             </DataTemplate>

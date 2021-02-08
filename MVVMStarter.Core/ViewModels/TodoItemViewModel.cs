@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -49,6 +48,7 @@ namespace MVVMStarter.Core.ViewModels
 
         public IMvxCommand CancelItemCommand { get; private set; }
 
+        // Private Methods
         private async Task SaveItem()
         {
             if (await _apiService.SaveItemAsync(Item))

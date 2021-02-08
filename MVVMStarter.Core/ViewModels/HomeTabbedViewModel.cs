@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -10,8 +9,6 @@ namespace MVVMStarter.Core.ViewModels
 {
     public class HomeTabbedViewModel : MvxNavigationViewModel
     {
-        private bool _firstTime = true;
-
         public HomeTabbedViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService)
             : base(logProvider, navigationService)
         {

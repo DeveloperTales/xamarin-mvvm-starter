@@ -13,7 +13,7 @@
             <Color x:Key="LightPageBackgroundColor">White</Color>
             <Color x:Key="LightNavigationBarColor">#009688</Color>
             <Color x:Key="LightPrimaryColor">#009688</Color>
-            <Color x:Key="LightSecondaryColor">Black</Color>
+            <Color x:Key="LightSecondaryColor">White</Color>
             <Color x:Key="LightPrimaryTextColor">Black</Color>
             <Color x:Key="LightSecondaryTextColor">White</Color>
             <Color x:Key="LightTertiaryTextColor">Gray</Color>
@@ -77,6 +77,12 @@
                         Value="{AppThemeBinding Light={StaticResource LightTertiaryTextColor}, Dark={StaticResource DarkTertiaryTextColor}}" />
                 <Setter Property="FontSize"
                         Value="15" />
+            </Style>
+
+            <Style x:Key="LabelPrimaryColorStyle"
+                   TargetType="Label">
+                <Setter Property="TextColor"
+                        Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}}" />
             </Style>
             <!-- List Styles -->
             <!--<Style x:Key="LargeEvenListView" TargetType="ListView">

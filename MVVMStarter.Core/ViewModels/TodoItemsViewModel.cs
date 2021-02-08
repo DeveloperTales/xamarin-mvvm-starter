@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Commands;
 using MvvmCross.Logging;
@@ -11,13 +10,11 @@ namespace MVVMStarter.Core.ViewModels
 {
     public class TodoItemsViewModel : MvxNavigationViewModel
     {
-        private readonly IMvxNavigationService _navigationService;
         private readonly IApiService _apiService;
 
         public TodoItemsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IApiService apiService)
             : base(logProvider, navigationService)
         {
-            _navigationService = navigationService;
             _apiService = apiService;
 
             Items = new MvxObservableCollection<TodoItem>();
@@ -36,6 +33,20 @@ namespace MVVMStarter.Core.ViewModels
 
         // MVVM Properties
         public MvxNotifyTask LoadItemsTask { get; private set; }
+
+        private bool _busy;
+        public bool IsBusy
+        {
+            get
+            {
+                return _busy;
+            }
+            set
+            {
+                _busy = value;
+                RaisePropertyChanged(() => IsBusy);
+            }
+        }
 
         private MvxObservableCollection<TodoItem> _items;
         public MvxObservableCollection<TodoItem> Items
@@ -61,9 +72,11 @@ namespace MVVMStarter.Core.ViewModels
         // Private methods
         private async Task LoadItems()
         {
+            IsBusy = true;
             var result = await _apiService.GetTodoItemsAsync();
             Items.Clear();
             Items.AddRange(result);
+            IsBusy = false;
         }
 
         private async Task ItemSelected(TodoItem item)
